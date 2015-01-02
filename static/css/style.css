@@ -1,0 +1,25 @@
+
+
+body {
+    /* This padding is needed so body is not covered by navbar */
+    padding-top: 50px;
+    font-size: 2.5em;
+}
+
+
+#map {
+    height: 40em; // 280px
+}
+
+
+#aboutBut {
+    padding-top: 0.5em;
+    color: rgb(255,255,255);
+    background-color: rgb(10,10,10); // rgb(255,79,0);
+    position: absolute;
+    right: 3em;
+}
+
+.navbar {
+    background-color: rgb(10,10,10); // rgb(255,79,0);
+}

@@ -1,0 +1,159 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+
+    <title>SF Filming Locations</title>
+
+    <!-- Bootstrap CSS: -->
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+
+    <!-- jQuery UI CSS: -->
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+
+    <!-- Leaflet CSS (mapping) -->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
+
+    <!-- Local CSS: -->
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+
+  </head>
+
+
+<body>
+
+   <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">San Francisco Filming Locations</a>
+        </div>
+	<div id="navbar">
+	  <button type="button" id="aboutBut" class="btn btn-lg btn-about navbar-right" data-toggle="modal" data-target="#AboutModal">
+	    About
+	  </button>
+	</div>
+      </div>
+    </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="AboutModal" tabindex="-1" role="dialog" aria-labelledby="AboutModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h4 class="modal-title" id="AboutModalLabel">About:</h4>
+      </div>
+      <div class="modal-body">
+	<p>
+	Over the years many movies have filmed at various San Francisco locations and
+	this website allows you to search through and find these movie locations.
+	You can filter in one of two ways.
+	First, you can enter in a movie title and find all locations associated with that title.
+	Second, you can use the mouse to click on the map to specify a location, and then
+	find all movie locations within a given radius of that location.
+	</p>
+	<p>
+	  Data is provided by <a href="https://data.sfgov.org/Culture-and-Recreation/Film-Locations-in-San-Francisco/yitu-d5am">DataSF</a>.
+	</p>
+	<p>
+	  This website was developed by: Greg Hornby
+	</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-11">
+	<p>Search for filming locations from movies that had scenes filmed in
+	  San Francisco.  Filter by either:</p>
+      </div>
+    </div> <!-- row -->
+      
+    <div class="row">
+      <div class="col-md-8">
+	<p>
+	  1. Enter the movie name: 
+	  <input id="movieName" type="text" size=25 placeholder="movie name" name="moviename">
+	</p>
+      </div>
+      <div class="col-md-1">
+	<button type="button" id="but-filter-name" class="btn btn-lg btn-primary">Go: filter by name <span class="glyphicon glyphicon-play"></span></button>
+      </div>
+    </div> <!-- row -->
+
+    <div class="row">
+      <div class="col-md-8">
+	<p>
+	  2. Set location and radius:
+	  <select id="radius">
+	    <option value="500">500 ft</option>
+	    <option value="1000">1000 ft</option>
+	    <option selected="selected" value="2000">2000 ft</option>
+	    <option value="5280">1 mile</option>
+	    <option value="10560">2 miles</option>
+	    <option value="26400">5 miles</option>
+	  </select>
+	  <br>
+	  (Click on the map to position the red marker.)
+	</p>
+
+      </div>
+      <div class="col-md-1">
+	<button type="button" id="but-filter-loc" class="btn btn-lg btn-primary">Go: filter by location <span class="glyphicon glyphicon-play"></span></button>
+      </div>
+    </div> <!-- row -->
+
+
+  </div><!-- container -->
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+	<div id="map"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- jQuery/Bootstrap JavaScript: -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+  <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+
+
+  <!-- Set some variables for link locations for the javascript: -->
+  <script type=text/javascript>
+    var Static_URL = "{{ url_for('static', filename='') }}";
+    var Get_by_Key_URL = "{{ url_for('get_by_key') }}";
+    var Get_Movie_Info_URL = "{{ url_for('get_movie_info') }}";
+    var Get_by_Indexes_URL = "{{ url_for('get_by_indexes') }}";
+    var Get_Indexes_by_Loc_URL = "{{ url_for('get_indexes_by_loc') }}";
+  </script>
+  {% include 'movie_keys.html' %}
+
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script src="{{ url_for('static', filename='js/sfmovies.js') }}"></script>
+
+  </body>
+</html>
+
+
+
+    
