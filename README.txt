@@ -15,7 +15,7 @@ CONTENTS:
 2. Approach / Solution
 3. API
 4. Future Work
-5. 
+5. References
 
 
 ========================================================
@@ -316,6 +316,8 @@ o One of the next things I want to get familiarity with is learning to
 ========================================================
 
 5. REFERENCES
+
+Here are links to external resources I used:
 
 o GeoPy
  - https://geopy.readthedocs.org/en/1.6.0/#module-geopy.geocoders
